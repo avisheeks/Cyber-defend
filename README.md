@@ -1,99 +1,112 @@
 # Cybersecurity Threat Detection System
 
-A real-time threat detection system for monitoring and responding to cybersecurity threats.
+![Dashboard Screenshot](frontend/public/images/1.png)
+![Threat Visualization](frontend/public/images/2.png)
 
-## Project Structure
+## Overview
 
-- `/backend` - FastAPI application that serves API and WebSocket endpoints
-- `/frontend` - React application for visualizing and managing threats
+**Cybersecurity Threat Detection System** is a full-stack platform for real-time monitoring, detection, and visualization of cybersecurity threats. It leverages AI/ML models for advanced threat analysis and provides a modern, interactive dashboard for security teams.
 
-## Getting Started
-
-### Backend Setup
-
-1. Navigate to the backend directory
-   ```
-   cd backend
-   ```
-
-2. Install required packages
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. Start the FastAPI server
-   ```
-   uvicorn app:app --reload
-   ```
-
-### Frontend Setup
-
-1. Navigate to the frontend directory
-   ```
-   cd frontend
-   ```
-
-2. Install dependencies
-   ```
-   npm install
-   ```
-
-3. Start the development server
-   ```
-   npm start
-   ```
+---
 
 ## Features
 
-- Real-time threat detection and alerting
-- Comprehensive dashboard for threat visualization
-- Detailed threat analysis
-- Automated and manual threat response
-- Historical threat data and analytics
+- **Real-Time Threat Detection:**
+  - Monitors network and system metrics live.
+  - Uses AI/ML models to detect anomalies and classify threats.
+- **Interactive Dashboard:**
+  - Visualizes alerts, system health, and threat analytics.
+  - Drill-down analysis for each alert.
+- **WebSocket-Powered Updates:**
+  - Instant updates to the frontend for new threats and system changes.
+- **Customizable & Extensible:**
+  - Modular backend and frontend for easy extension.
+- **Modern UI/UX:**
+  - Built with React, Tailwind CSS, and Framer Motion for a responsive, beautiful interface.
 
-## Technologies Used
+---
 
-- React
-- React Router
-- Tailwind CSS
-- Framer Motion (animations)
-- React Icons
-- Chart.js (for data visualization)
-
-## Backend API
-
-The application is designed to connect to a backend API that provides threat data. The mock API endpoints expected are:
-
-- `/dashboard/summary` - Dashboard summary statistics
-- `/alerts` - List of security alerts
-- `/threats/:id` - Details for a specific threat
-- `/threat-locations` - Geographical data for threat origins
-
-## Project Structure
+## Architecture
 
 ```
-src/
-├── components/         # React components
-│   ├── Dashboard.jsx   # Dashboard overview
-│   ├── AlertList.jsx   # List of alerts
-│   ├── ThreatAnalysis.jsx # Individual threat details
-│   ├── ThreatMap.jsx   # Geographical threat visualization
-│   └── Settings.jsx    # Application settings
-├── App.jsx             # Main application component with routing
-├── index.js            # Application entry point
-└── index.css           # Global styles and Tailwind imports
++-------------------+        WebSocket/REST        +-------------------+
+|   Frontend (React)| <------------------------->  |   Backend (FastAPI)|
+|  - Dashboard      |                             |  - API & WebSocket |
+|  - Visualization  |                             |  - ML Model        |
++-------------------+                             +-------------------+
 ```
 
-## Customization
+- **Backend:** Python FastAPI, ML model (see `backend/ml_model.py`), real-time WebSocket endpoints.
+- **Frontend:** React, Tailwind CSS, Chart.js, Framer Motion, real-time data via WebSocket.
 
-- The UI is built with Tailwind CSS, making it easy to customize colors, spacing, and more.
-- The application uses a dark theme by default, optimized for security monitoring.
+---
+
+## Quick Start
+
+### Backend
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn app:app --host 0.0.0.0 --port 8001
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8001
+
+---
+
+## Directory Structure
+
+```
+.
+├── backend/                # FastAPI backend, ML model
+│   ├── app.py              # Main API and WebSocket server
+│   ├── ml_model.py         # Threat detection model logic
+│   └── requirements.txt    # Python dependencies
+├── frontend/               # React frontend
+│   ├── src/                # React source code
+│   ├── public/images/      # Dashboard and threat images
+│   └── ...
+├── models/                 # ML model files
+│   ├── windows10_threat_detector.lgb
+│   ├── windows10_threat_detector_scaler.pkl
+│   └── ...
+└── ...
+```
+
+---
+
+## Example Screenshots
+
+### Dashboard
+![Dashboard](frontend/public/images/1.png)
+
+### Threat Visualization
+![Threat Visualization](frontend/public/images/2.png)
+
+---
+
+## Customization & Extensibility
+- **Add new ML models:** Place in `models/` and update `ml_model.py`.
+- **Extend frontend:** Add new React components in `frontend/src/components/`.
+- **API:** Add new endpoints in `backend/app.py`.
+
+---
 
 ## License
-
 MIT
 
-## Acknowledgements
+---
 
-- Built using the TON_IoT dataset for realistic threat modeling
-- Icons provided by [Phosphor Icons](https://phosphoricons.com/) via react-icons 
+## Credits
+- Dashboard and threat images: see `frontend/public/images/`
+- Built with FastAPI, React, Tailwind CSS, Chart.js, and Framer Motion. 
